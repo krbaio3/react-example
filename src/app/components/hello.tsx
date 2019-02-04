@@ -6,6 +6,6 @@ interface Props {
 
 export const HelloComponent = ( props: Props ) => {
   return (
-    <h2>Aco de Vida {props.username}</h2>
+    <h2>Asco de Vida {props.username}</h2>
   );
 }
