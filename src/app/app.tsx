@@ -17,6 +17,9 @@ export class App extends React.Component<Props, State> {
 
   constructor(props) {
     super(props);
+    setTimeout(() => {
+      this.setState({username: 'esto cambia por setTimeOut'});
+    }, 2000);
 
     // Hay dos opciones para no perder el this en las clases,
     // una, es bindear el this del método cuando se llame:
