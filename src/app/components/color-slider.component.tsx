@@ -5,7 +5,7 @@ interface Props {
   onValueUpdated: (newValue: number) => void;
 }
 
-export const ColorSliderComponent = (props: Props) => {
+export const ColorSliderComponent = (props: Props) => (
   <>
     <input
       type='range'
@@ -16,5 +16,6 @@ export const ColorSliderComponent = (props: Props) => {
       value={props.value}
       onChange={e => props.onValueUpdated(+e.target.value)}
     />
-  </>;
-};
+    {props.value}
+  </>
+);
