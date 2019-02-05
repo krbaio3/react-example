@@ -1,12 +1,14 @@
 import * as React from 'react';
 
 // componentes
-import { HelloComponent } from './components/hello.component';
-import { NameEditComponent } from './components/name-edit.component';
-import { ButtonComponent } from './components/button.component';
-import { ColorPicker } from './components/color-picker.component';
-import { Color } from './models/color';
-import { ColorBrowser } from './components/color-browser';
+import {
+  HelloComponent,
+  NameEditComponent,
+  ButtonComponent,
+  ColorPicker,
+  ColorBrowser,
+} from './components';
+import { Color } from './models';
 
 interface Props {}
 

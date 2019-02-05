@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Color } from '../models/color';
+import { Color } from '../models';
 
 interface Props {
   color: Color;
