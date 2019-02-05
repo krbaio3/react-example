@@ -74,11 +74,9 @@ export class App extends React.Component<Props, State> {
       <>
         <ColorBrowser color={this.state.color} />
         <p>
-          Color: [ 
-          red: {this.state.color.red}
+          Color: [ red: {this.state.color.red}
           green: {this.state.color.green}
-          blue: {this.state.color.blue}
-          ]
+          blue: {this.state.color.blue}]
         </p>
         <ColorPicker
           color={this.state.color}
