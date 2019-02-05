@@ -7,6 +7,7 @@ import {
   ButtonComponent,
   ColorPicker,
   ColorBrowser,
+  SideBarComponent,
 } from './components';
 import { Color } from './models';
 
@@ -74,6 +75,7 @@ export class App extends React.Component<Props, State> {
   render() {
     return (
       <>
+        <SideBarComponent />
         <ColorBrowser color={this.state.color} />
         <p>
           Color: [ red: {this.state.color.red}
