@@ -1,17 +1,42 @@
 import { MemberEntity } from '../models';
-import { MemberMockData } from './memberMockData';
+import { CONSTANT } from '../constants/constants';
 
 // Sync mock data API, inspired from:
 // https://gist.github.com/coryhouse/fd6232f95f9d601158e4
 class MemberAPI {
-  //This would be performed on the server in a real app. Just stubbing in.
-  private _clone(item) {
-    return JSON.parse(JSON.stringify(item)); //return cloned copy so that the item is passed by value instead of by reference
+  // Just return a copy of the mock data
+  getAllMembers(): Promise<MemberEntity[]> {
+    const gitHubMembersUrl: string = CONSTANT.gitHubMembersUrl;
+
+    return fetch(gitHubMembersUrl)
+      .then(response => this.checkStatus(response))
+      .then(response => this.parseJSON(response))
+      .then(data => this.resolveMembers(data));
   }
 
-  // Just return a copy of the mock data
-  getAllMembers(): Array<MemberEntity> {
-    return this._clone(MemberMockData);
+  private checkStatus(response: Response): Promise<Response> {
+    if (response.status >= 200 && response.status < 300) {
+      return Promise.resolve(response);
+    }
+    throw new Error(response.statusText);
+  }
+
+  private parseJSON(response: Response): any {
+    return response.json();
+  }
+
+  private resolveMembers(data: any): Promise<MemberEntity[]> {
+    const members = data.map(gitHubMember => {
+      const member: MemberEntity = {
+        id: gitHubMember.id,
+        login: gitHubMember.login,
+        avatar_url: gitHubMember.avatar_url,
+      };
+
+      return member;
+    });
+
+    return Promise.resolve(members);
   }
 }
 

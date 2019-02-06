@@ -6,3 +6,4 @@ export { HelloComponent } from './hello.component';
 export { NameEditComponent } from './name-edit.component';
 export { SideBarComponent } from './side-bar/side-bar.component';
 export { MemberTableComponent } from './memberTable/members-table.component';
+export { CaritasComponent } from './caritas/caritas.component';

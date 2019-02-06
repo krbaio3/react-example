@@ -18,7 +18,14 @@ export class MemberTableComponent extends React.Component<Props, State> {
   };
 
   componentDidMount() {
-    this.setState({ members: memberAPI.getAllMembers() });
+    memberAPI
+      .getAllMembers()
+      .then(members => {
+        this.setState({ members });
+      })
+      .catch(error => {
+        console.error((`Error al llamar al API: ${error}`))
+      });
   }
 
   public render() {

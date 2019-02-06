@@ -1,0 +1,29 @@
+.very-dissatisfied {
+  width:100%;
+  height:80px;
+  background:url('../img/one.png') no-repeat;;
+}
+
+.somewhat-dissatisfied {
+  width:100%;
+  height:80px;
+  background:url('../img/two.png') no-repeat;
+}
+
+.neither {
+  width:100%;
+  height:80px;
+  background:url('../img/three.png') no-repeat;
+}
+
+.somewhat-satisfied {
+  width:100%;
+  height:80px;
+  background:url('../img/four.png') no-repeat;
+}
+
+.very-satisfied {
+  width:100%;
+  height:80px;
+  background:url('../img/five.png') no-repeat;
+}
