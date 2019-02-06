@@ -8,6 +8,7 @@ import {
   ColorPicker,
   ColorBrowser,
   SideBarComponent,
+  MemberTableComponent
 } from './components';
 import { Color } from './models';
 
@@ -90,6 +91,9 @@ export class App extends React.Component<Props, State> {
           <li><a href="https://www.imdb.com/title/tt0062622">2001: A Space Odyssey</a></li>
         </ul>
         </SideBarComponent>
+        <br/>
+        <MemberTableComponent/>
+        <br/>
         <ColorBrowser color={this.state.color} />
         <p>
           Color: [ red: {this.state.color.red}
