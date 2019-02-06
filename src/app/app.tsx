@@ -18,14 +18,16 @@ interface State {
   disabled: boolean;
   editingUsername: string;
   color: Color;
+  isSideBarVisible: boolean;
 }
 
 export class App extends React.Component<Props, State> {
-  public state = {
+  public state: State = {
     username: 'por defecto',
     disabled: false,
     editingUsername: 'por defecto',
     color: { red: 90, green: 50, blue: 70 },
+    isSideBarVisible: false,
   };
 
   constructor(props) {
@@ -47,6 +49,12 @@ export class App extends React.Component<Props, State> {
 
   public setColorState = (color: Color) => {
     this.setState({ color });
+  };
+
+  public toggleSideBarvisibility = () => {
+    const isSideBarVisible = !this.state.isSideBarVisible;
+
+    this.setState({ isSideBarVisible });
   };
 
   public clickButton = () => {
@@ -75,7 +83,13 @@ export class App extends React.Component<Props, State> {
   render() {
     return (
       <>
-        <SideBarComponent />
+        <SideBarComponent isVisilble={this.state.isSideBarVisible}>
+        <ul>
+          <li><a href="https://www.imdb.com/title/tt0816692">Interstellar</a></li>
+          <li><a href="https://www.imdb.com/title/tt0083658">Blade Runner</a></li>
+          <li><a href="https://www.imdb.com/title/tt0062622">2001: A Space Odyssey</a></li>
+        </ul>
+        </SideBarComponent>
         <ColorBrowser color={this.state.color} />
         <p>
           Color: [ red: {this.state.color.red}
@@ -99,6 +113,24 @@ export class App extends React.Component<Props, State> {
           disabled={this.state.disabled}
           onClick={this.clickButton}
         />
+        <div style={{ float: 'right' }}>
+          <button onClick={this.toggleSideBarvisibility}>
+            <span
+              style={{
+                display: this.state.isSideBarVisible ? 'none' : 'block',
+              }}
+            >
+              Open
+            </span>
+            <span
+              style={{
+                display: !this.state.isSideBarVisible ? 'none' : 'block',
+              }}
+            >
+              Close
+            </span>
+          </button>
+        </div>
       </>
     );
   }
