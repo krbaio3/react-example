@@ -1,11 +1,10 @@
 import * as React from 'react';
 
-import '../../../assets/css/site.css';
+const className = require('../../../assets/css/site.css');
 
-interface Props {}
+interface Props {
+    level: number;
+}
 
-export const CaritasComponent = (props: Props) => (
-  <>
-    <h1>Caritas Component</h1>;
-  </>
-);
+export const CaritasComponent = (props: Props) =>
+    <div className={className.verySatisfied}></div>

@@ -85,7 +85,7 @@ export class App extends React.Component<Props, State> {
   render() {
     return (
       <>
-        <CaritasComponent/>
+        <CaritasComponent level={200}/>
         <SideBarComponent isVisilble={this.state.isSideBarVisible}>
         <ul>
           <li><a href="https://www.imdb.com/title/tt0816692">Interstellar</a></li>
