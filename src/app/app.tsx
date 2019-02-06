@@ -21,6 +21,7 @@ interface State {
   editingUsername: string;
   color: Color;
   isSideBarVisible: boolean;
+  level: number;
 }
 
 export class App extends React.Component<Props, State> {
@@ -30,6 +31,7 @@ export class App extends React.Component<Props, State> {
     editingUsername: 'por defecto',
     color: { red: 90, green: 50, blue: 70 },
     isSideBarVisible: false,
+    level: 200
   };
 
   constructor(props) {
@@ -63,6 +65,10 @@ export class App extends React.Component<Props, State> {
     console.log('click');
   };
 
+  public updateRangeCarita = (level: number ) => {
+    this.setState({level});
+  }
+
   public updateEditingName = (editingUsername: string) => {
     this.setState({ editingUsername });
   };
@@ -85,7 +91,12 @@ export class App extends React.Component<Props, State> {
   render() {
     return (
       <>
-        <CaritasComponent level={200}/>
+        <CaritasComponent level={this.state.level}/>
+        <input type="range" name="carita" id="carita"
+        min="0"
+        max="500"
+        value={this.state.level}
+        onChange={(e) => this.updateRangeCarita(+e.target.value)}/>
         <SideBarComponent isVisilble={this.state.isSideBarVisible}>
         <ul>
           <li><a href="https://www.imdb.com/title/tt0816692">Interstellar</a></li>
