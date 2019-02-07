@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Route, Link, HashRouter, Switch, BrowserRouter } from 'react-router-dom';
 
 // componentes
 import {
@@ -6,10 +7,12 @@ import {
   NameEditComponent,
   ButtonComponent,
   ColorPicker,
-  ColorBrowser,
+  ColorBrowserComponent,
   SideBarComponent,
   MemberTableComponent,
-  CaritasComponent
+  CaritasComponent,
+  PageA,
+  PageB
 } from './components';
 import { Color } from './models';
 
@@ -31,7 +34,7 @@ export class App extends React.Component<Props, State> {
     editingUsername: 'por defecto',
     color: { red: 90, green: 50, blue: 70 },
     isSideBarVisible: false,
-    level: 200
+    level: 200,
   };
 
   constructor(props) {
@@ -65,9 +68,9 @@ export class App extends React.Component<Props, State> {
     console.log('click');
   };
 
-  public updateRangeCarita = (level: number ) => {
-    this.setState({level});
-  }
+  public updateRangeCarita = (level: number) => {
+    this.setState({ level });
+  };
 
   public updateEditingName = (editingUsername: string) => {
     this.setState({ editingUsername });
@@ -91,23 +94,38 @@ export class App extends React.Component<Props, State> {
   render() {
     return (
       <>
-        <CaritasComponent level={this.state.level}/>
-        <input type="range" name="carita" id="carita"
-        min="0"
-        max="500"
-        value={this.state.level}
-        onChange={(e) => this.updateRangeCarita(+e.target.value)}/>
+        <p>Sólo se pinta si necesita renderizar el componente</p>
+        <CaritasComponent level={this.state.level} />
+        <input
+          type='range'
+          name='carita'
+          id='carita'
+          min='0'
+          max='500'
+          value={this.state.level}
+          onChange={e => this.updateRangeCarita(+e.target.value)}
+        />
         <SideBarComponent isVisilble={this.state.isSideBarVisible}>
-        <ul>
-          <li><a href="https://www.imdb.com/title/tt0816692">Interstellar</a></li>
-          <li><a href="https://www.imdb.com/title/tt0083658">Blade Runner</a></li>
-          <li><a href="https://www.imdb.com/title/tt0062622">2001: A Space Odyssey</a></li>
-        </ul>
+          <ul>
+            {/* <li>
+              <Link to='/'>CaritasComponent</Link>
+            </li>
+            <li>
+              <Link to='/color'>ColorBrowserComponent</Link>
+            </li>
+            <li>
+              <Link to='/hello'>HelloComponent</Link>
+            </li> */}
+            <li><a href="https://www.imdb.com/title/tt0816692">Interstellar</a></li>
+            <li><a href="https://www.imdb.com/title/tt0083658">Blade Runner</a></li>
+            <li><a href="https://www.imdb.com/title/tt0062622">2001: A Space Odyssey</a></li>
+          </ul>
         </SideBarComponent>
-        <br/>
-        <MemberTableComponent/>
-        <br/>
-        <ColorBrowser color={this.state.color} />
+        <br />
+        <p>Tabla de miembros con Fetch</p>
+        <MemberTableComponent />
+        <br />
+        <ColorBrowserComponent color={this.state.color} />
         <p>
           Color: [ red: {this.state.color.red}
           green: {this.state.color.green}
@@ -148,6 +166,20 @@ export class App extends React.Component<Props, State> {
             </span>
           </button>
         </div>
+        <h1>Ejemplo de tabla rasa</h1>  
+        {/* Se puede hacer con HashRouter, que es compatibilidad para navegadores antiguos, 
+        o se puede usar BrowserRouter, que es para navegadores modernos*/}
+        {/* <HashRouter> */}
+        <BrowserRouter>
+          <Switch>
+            <Route exact={true} path="/" component={PageA}/>
+            <Route path="/pageB" component={PageB}/>
+          </Switch>
+        </BrowserRouter>
+        {/* </HashRouter> */}
+        {/* <Route path='/' component={CaritasComponent} />
+        <Route path='/color' component={ColorBrowserComponent} />
+        <Route path='/hello' component={HelloComponent} /> */}
       </>
     );
   }

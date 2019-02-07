@@ -16,7 +16,8 @@ module.exports = {
   ],
   output: {
     path: path.join( basePath, 'dist' ),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    publicPath: '/'
   },
   devtool: 'source-map',
   devServer: {
@@ -24,7 +25,8 @@ module.exports = {
     inline: true, // Enable watch and live reload
     host: 'localhost',
     port: 4300,
-    stats: 'errors-only'
+    stats: 'errors-only',
+    historyApiFallback: true
   },
   module: {
     rules: [ {
