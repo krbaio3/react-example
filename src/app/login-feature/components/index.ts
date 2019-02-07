@@ -1,0 +1,1 @@
+export {LoginPageComponent, PageBComponent, PageAComponent} from './pages';

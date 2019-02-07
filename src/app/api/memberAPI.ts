@@ -1,5 +1,5 @@
-import { MemberEntity } from '../models';
-import { CONSTANT } from '../constants/constants';
+import { MemberEntity } from '../shared/models';
+import { CONSTANT } from '../shared/constants/constants';
 
 // Sync mock data API, inspired from:
 // https://gist.github.com/coryhouse/fd6232f95f9d601158e4

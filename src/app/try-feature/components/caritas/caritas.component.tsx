@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-const className = require('../../../assets/css/site.css');
+const className = require('../../../../assets/css/site.css');
 
 /**
  *
