@@ -1,5 +1,11 @@
 import * as React from 'react';
-import { Route, Link, HashRouter, Switch, BrowserRouter } from 'react-router-dom';
+import {
+  Route,
+  Link,
+  HashRouter,
+  Switch,
+  BrowserRouter,
+} from 'react-router-dom';
 
 // componentes
 import {
@@ -11,10 +17,14 @@ import {
   SideBarComponent,
   MemberTableComponent,
   CaritasComponent,
-  PageA,
-  PageB
 } from './components';
-import { Color } from './models';
+
+import {
+  LoginPageComponent,
+  PageAComponent,
+  PageBComponent,
+} from './login-feature/components/pages';
+import { Color } from './shared/models';
 
 interface Props {}
 
@@ -116,9 +126,17 @@ export class App extends React.Component<Props, State> {
             <li>
               <Link to='/hello'>HelloComponent</Link>
             </li> */}
-            <li><a href="https://www.imdb.com/title/tt0816692">Interstellar</a></li>
-            <li><a href="https://www.imdb.com/title/tt0083658">Blade Runner</a></li>
-            <li><a href="https://www.imdb.com/title/tt0062622">2001: A Space Odyssey</a></li>
+            <li>
+              <a href='https://www.imdb.com/title/tt0816692'>Interstellar</a>
+            </li>
+            <li>
+              <a href='https://www.imdb.com/title/tt0083658'>Blade Runner</a>
+            </li>
+            <li>
+              <a href='https://www.imdb.com/title/tt0062622'>
+                2001: A Space Odyssey
+              </a>
+            </li>
           </ul>
         </SideBarComponent>
         <br />
@@ -166,14 +184,14 @@ export class App extends React.Component<Props, State> {
             </span>
           </button>
         </div>
-        <h1>Ejemplo de tabla rasa</h1>  
+        <h1>Ejemplo de tabla rasa</h1>
         {/* Se puede hacer con HashRouter, que es compatibilidad para navegadores antiguos, 
         o se puede usar BrowserRouter, que es para navegadores modernos*/}
         {/* <HashRouter> */}
         <BrowserRouter>
           <Switch>
-            <Route exact={true} path="/" component={PageA}/>
-            <Route path="/pageB" component={PageB}/>
+            <Route exact={true} path='/' component={LoginPageComponent} />
+            <Route path='/pageB' component={PageBComponent} />
           </Switch>
         </BrowserRouter>
         {/* </HashRouter> */}

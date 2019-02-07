@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { MemberEntity, Head } from '../../models';
+import { MemberEntity, Head } from '../../shared/models';
 import { memberAPI } from '../../api';
 import { MemberRow } from './members-row.component';
 import { HeadTableComponent } from './member-head.component';

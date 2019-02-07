@@ -7,5 +7,3 @@ export { NameEditComponent } from './name-edit.component';
 export { SideBarComponent } from './side-bar/side-bar.component';
 export { MemberTableComponent } from './memberTable/members-table.component';
 export { CaritasComponent } from './caritas/caritas.component';
-export { PageA } from './pageA/pageA.component';
-export { PageB } from './pageB/pageB.component';

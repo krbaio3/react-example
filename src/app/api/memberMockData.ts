@@ -1,4 +1,4 @@
-import { MemberEntity } from '../models';
+import { MemberEntity } from '../shared/models';
 
 export const MemberMockData: MemberEntity[] = 
 [
