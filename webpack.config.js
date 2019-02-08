@@ -8,7 +8,11 @@ var basePath = __dirname;
 module.exports = {
   context: path.join( basePath, "src" ),
   resolve: {
-    extensions: [ '.js', '.ts', '.tsx', 'scss', 'css' ]
+    extensions: [ '.js', '.ts', '.tsx', 'scss', 'css' ],
+    alias: {
+      '@app': path.resolve(__dirname, 'src/app/'),
+      '@src': path.resolve(__dirname, 'src/'),
+    }
   },
   entry: [ '@babel/polyfill',
     'whatwg-fetch',

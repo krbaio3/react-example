@@ -14,5 +14,19 @@
   "compileOnSave": false,
   "exclude": [
     "node_modules"
-  ]
+  ],
+  "paths": {
+    "@src": [
+      "src"
+    ],
+    "@src/*": [
+      "src/*"
+    ],
+    "@app": [
+      "src/app"
+    ],
+    "@app/*": [
+      "src/app/*"
+    ],
+  }
 }
