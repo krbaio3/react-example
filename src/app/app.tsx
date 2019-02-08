@@ -17,7 +17,7 @@ import {
   SideBarComponent,
   MemberTableComponent,
   CaritasComponent,
-} from './components';
+} from './try-feature/components';
 
 import {
   LoginPageComponent,

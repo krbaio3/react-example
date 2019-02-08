@@ -1,6 +1,6 @@
 export { ButtonComponent } from './button.component';
-export { ColorBrowserComponent } from './color-browser.component';
 export { ColorPicker } from './color-picker.component';
+export { ColorBrowserComponent } from './color-browser.component';
 export { ColorSliderComponent } from './color-slider.component';
 export { HelloComponent } from './hello.component';
 export { NameEditComponent } from './name-edit.component';

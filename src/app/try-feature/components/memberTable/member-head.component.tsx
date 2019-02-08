@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Head } from '../../shared/models';
+import { Head } from '../../../shared/models';
 
 interface Props {
   head: Head;

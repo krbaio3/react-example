@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { MemberEntity } from '../../shared/models';
+import { MemberEntity } from '../../../shared/models';
 
 interface Props {
   member: MemberEntity;
