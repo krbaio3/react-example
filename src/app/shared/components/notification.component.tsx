@@ -2,7 +2,7 @@ import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import SnackBar from '@material-ui/core/Snackbar';
 import IconsButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/core/Close';
+import CloseIcon from '@material-ui/icons/Close';
 import { withStyles, IconButton } from '@material-ui/core';
 
 interface Props {
