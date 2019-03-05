@@ -1,8 +1,8 @@
 import * as React from 'react';
-import Button from '@material-ui/core/Button';
+import { Button } from '@material-ui/core';
 import SnackBar from '@material-ui/core/Snackbar';
 import IconsButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
+import { Close } from '@material-ui/icons';
 import { withStyles, IconButton } from '@material-ui/core';
 
 interface Props {
@@ -31,7 +31,7 @@ export const NotificationComponent = ({ message, onClose, show }: Props) => (
         color='inherit'
         onClick={onClose}
       >
-        <CloseIcon />
+        <Close />
       </IconButton>,
     ]}
   />
