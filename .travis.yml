@@ -1,0 +1,68 @@
+os:
+- linux
+service:
+- docker
+language: node_js
+node_js:
+- stable
+addons:
+  firefox: latest
+  apt:
+    sources:
+    - google-chrome
+    packages:
+    - google-chrome-stable
+dist: trusty
+sudo: true
+env:
+  global:
+  - apiKey=$apiKey
+  - authDomain=$authDomain
+  - databaseURL=$databaseURL
+  - projectId=$projectId
+  - storageBucket=$storageBucket
+  - messagingSenderId=$messagingSenderId
+  - MOZ_HEADLESS=1
+cache:
+  yarn: true
+  directories:
+  - node_modules
+before_install: 
+install:
+- yarn install
+jobs:
+  include:
+  - stage: Tests
+    name: Unit Test
+    script: yarn test
+  - stage: Tests
+    if: branch = master
+    name: Integration Test
+    script: yarn test
+  - stage: Tests
+    if: branch = master
+    name: Acceptance Test
+    script: yarn test
+  - stage: Build
+    name: Build App
+    script: yarn build
+  - stage: Deploy to production
+    name: Deploy App to Firebase Hosting (master)
+    before_script: yarn global add firebase-tools
+    script: yarn travis:build
+    after_script: yarn travis:deploy
+  - stage: Test Production
+    name: Curl to Prod
+    if: branch = master
+    script: curl https://bardock-ng.firebaseapp.com/
+branches:
+  only:
+  - master
+notifications:
+  email:
+    recipients:
+    - krbaio3@gmail.com
+    on_success: never
+    on_failure: always
+  slack:
+    secure: YAMoy1zTzgiURhAn0BP1za19nxUeIEqk/zb4QxdJTXudJd45lihplrWye8dS2bVVLt59cANCvc08GX49ECMcEDmyZHZAnE/17XDwVRxxS1gTV1dypvWf7X4NOqz8cCXfcv4uMlasor3SZ4pWd2NgCXssRdeADCkGlk3zAqubBvpcZKPBQ3tydp7BxQPgjFgEeJ1muQQbQXX9gxW59Hfx1dwmx/I5dLs3KXEZv9ah5pmEiMSczWGniPrYjrgH2DchUMkpmSKqUCd+8yZb7o3rsbyWgNostb4Bdl9vzE/drjImSE2H0LoXw5DK3bYeIQ4Y0tD4B80V3vE8n2q1oYTZwgI5tktUW/bV2aUPumhCVqhJ+vGpku2h6tLAdzFGim1AE8FOZ4gnUUUNwe+cggOt+tsn0QktUf+V0GTZ8C9e53JoCkAAYO7OwVHMYOD1+p9g8ThQloIlnsFm1sWc0msSN2kNInilfkmFXMTuuYLW7ayBXNZ0bud820/+ArrqcI3Gp0O2+ozZK0hTthz+FTqPrT4BeNfeoRkpGCz7wGMhmTB9DkjhhWOma3auCsY/JLrc4rKauLDSUxC9ac+7kpskGDD+4UQoiUHonHpBh+23lJIBhs0zetsUlz1mW0YHHmYZoEqjy5sCh62eAEOPspQhillWnJDkIGn1NmiG6gk75hI=
