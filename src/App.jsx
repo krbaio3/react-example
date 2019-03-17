@@ -11,8 +11,20 @@ class App extends React.Component {
       { name: 'Nebur', age: 29, id: uuid() },
       { name: 'Loser', age: 29, id: uuid() }
     ],
-    otherState: 'alguna mierda',
     showPersons: false
+  };
+
+  nameChangedHandler = (event, id) => {
+    const personIndex = this.state.persons.findIndex(
+      person => person.id === id
+    );
+    const person = {
+      ...this.state.persons[personIndex]
+    };
+    person.name = event.target.value;
+    const persons = [...this.state.persons];
+    persons[personIndex] = person;
+    this.setState({ persons });
   };
 
   deletePersonHandler = idPerson => {
@@ -29,8 +41,9 @@ class App extends React.Component {
   render() {
     const style = {
       backgroundColor: 'cadetblue',
+      color: 'black',
       font: 'inherit',
-      border: '1px solid black',
+      border: '1px solid white',
       padding: '8px',
       borderRadius: '15px',
       cursor: 'pointer'
@@ -47,16 +60,27 @@ class App extends React.Component {
               age={person.age}
               click={() => this.deletePersonHandler(index)}
               key={person.id}
+              changed={event => this.nameChangedHandler(event, person.id)}
             />
           ))}
         </div>
       );
+      style.backgroundColor = 'green';
+    }
+
+    let classes = [];
+
+    if (this.state.persons.length <= 2) {
+      classes.push('red'); // classes = ['red']
+    }
+    if (this.state.persons.length <= 1) {
+      classes.push('bold'); // classes = ['red', 'bold']
     }
 
     return (
       <div className="App">
         <h1> Hi! I 'm a React App</h1>
-        <p>This is really working</p>
+        <p className={classes.join(' ')}>This is really working</p>
         <button style={style} onClick={this.togglePersonsHandler}>
           Switch Name
         </button>
