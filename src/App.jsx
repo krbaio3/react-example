@@ -1,6 +1,8 @@
 import React from 'react';
 import Person from './Person/Person';
 import uuid from 'uuid/v4';
+
+import '../node_modules/animate.css/animate.min.css';
 import './App.css';
 
 class App extends React.Component {
@@ -53,7 +55,7 @@ class App extends React.Component {
 
     if (this.state.showPersons) {
       persons = (
-        <div>
+        <div className="animated flip">
           {this.state.persons.map((person, index) => (
             <Person
               name={person.name}
