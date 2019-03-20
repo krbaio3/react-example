@@ -4,7 +4,7 @@ import uuid from 'uuid/v4';
 
 // Styles
 import '../node_modules/animate.css/animate.min.css';
-import Styles from './App.module.css';
+import Styles from './App.module.scss';
 
 class App extends React.Component {
   state = {
@@ -42,17 +42,8 @@ class App extends React.Component {
   };
 
   render() {
-    const style = {
-      backgroundColor: 'darkcyan',
-      color: 'black',
-      font: 'inherit',
-      border: '1px solid white',
-      padding: '8px',
-      borderRadius: '15px',
-      cursor: 'pointer'
-    };
-
     let persons = null;
+    let btnClass = '';
 
     if (this.state.showPersons) {
       persons = (
@@ -68,9 +59,8 @@ class App extends React.Component {
           ))}
         </div>
       );
-      style.backgroundColor = 'green';
+      btnClass = Styles.Red;
     }
-
     let classes = [];
 
     if (this.state.persons.length <= 2) {
@@ -84,7 +74,7 @@ class App extends React.Component {
       <div className={Styles.App}>
         <h1> Hi! I 'm a React App</h1>
         <p className={classes.join(' ')}>This is really working</p>
-        <button style={style} onClick={this.togglePersonsHandler}>
+        <button className={btnClass} onClick={this.togglePersonsHandler}>
           Switch Name
         </button>
         {this.state.showPersons ? persons : null}
