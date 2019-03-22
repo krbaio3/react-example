@@ -1,40 +1,39 @@
 import React from 'react';
 import Person from './Person/Person';
-import './App.css';
+import uuid from 'uuid/v4';
+
+// Styles
+import '../node_modules/animate.css/animate.min.css';
+import Styles from './App.module.scss';
 
 class App extends React.Component {
   state = {
     persons: [
-      { name: 'superpoya', age: 26 },
-      { name: 'KrBaio', age: 28 },
-      { name: 'Nebur', age: 29 },
-      { name: 'Putita', age: 29 }
+      { name: 'Vankish', age: 26, id: uuid() },
+      { name: 'KrBaio', age: 28, id: uuid() },
+      { name: 'Nebur', age: 29, id: uuid() },
+      { name: 'Loser', age: 29, id: uuid() }
     ],
-    otherState: 'alguna mierda',
     showPersons: false
   };
 
-  switchNameHandler = name => {
-    console.log('was clicked');
-    this.setState({
-      persons: [
-        { name: name, age: 32 },
-        { name: 'KrBaio3', age: 32 },
-        { name: 'Nebur', age: 29 },
-        { name: 'Putita', age: 29 }
-      ]
-    });
+  nameChangedHandler = (event, id) => {
+    const personIndex = this.state.persons.findIndex(
+      person => person.id === id
+    );
+    const person = {
+      ...this.state.persons[personIndex]
+    };
+    person.name = event.target.value;
+    const persons = [...this.state.persons];
+    persons[personIndex] = person;
+    this.setState({ persons });
   };
 
-  nameChangedHandler = event => {
-    this.setState({
-      persons: [
-        { name: event.target.value, age: 32 },
-        { name: 'KrBaio3', age: 32 },
-        { name: 'Nebur', age: 29 },
-        { name: 'Putita', age: 29 }
-      ]
-    });
+  deletePersonHandler = idPerson => {
+    const persons = [...this.state.persons];
+    persons.splice(idPerson, 1);
+    this.setState({ persons });
   };
 
   togglePersonsHandler = () => {
@@ -43,49 +42,42 @@ class App extends React.Component {
   };
 
   render() {
-    const style = {
-      backgroundColor: 'cadetblue',
-      font: 'inherit',
-      border: '1px solid black',
-      padding: '8px',
-      borderRadius: '15px',
-      cursor: 'pointer'
-    };
+    let persons = null;
+    let btnClass = '';
+
+    if (this.state.showPersons) {
+      persons = (
+        <div className="animated flip">
+          {this.state.persons.map((person, index) => (
+            <Person
+              name={person.name}
+              age={person.age}
+              click={() => this.deletePersonHandler(index)}
+              key={person.id}
+              changed={event => this.nameChangedHandler(event, person.id)}
+            />
+          ))}
+        </div>
+      );
+      btnClass = Styles.Red;
+    }
+    let classes = [];
+
+    if (this.state.persons.length <= 2) {
+      classes.push(Styles.red); // classes = ['red']
+    }
+    if (this.state.persons.length <= 1) {
+      classes.push(Styles.bold); // classes = ['red', 'bold']
+    }
 
     return (
-      <div className="App">
+      <div className={Styles.App}>
         <h1> Hi! I 'm a React App</h1>
-        <p>This is really working</p>
-        <button style={style} onClick={this.togglePersonsHandler}>
+        <p className={classes.join(' ')}>This is really working</p>
+        <button className={btnClass} onClick={this.togglePersonsHandler}>
           Switch Name
         </button>
-        {this.state.showPersons ? (
-          <div>
-            <Person
-              name={this.state.persons[0].name}
-              age={this.state.persons[0].age}
-              click={this.switchNameHandler.bind(this, 'ultra nabo')}
-              change={this.nameChangedHandler}
-            >
-              My hobby is running
-            </Person>
-
-            <Person
-              name={this.state.persons[1].name}
-              age={this.state.persons[1].age}
-            />
-
-            <Person
-              name={this.state.persons[2].name}
-              age={this.state.persons[2].age}
-            />
-
-            <Person
-              name={this.state.persons[3].name}
-              age={this.state.persons[3].age}
-            />
-          </div>
-        ) : null}
+        {this.state.showPersons ? persons : null}
       </div>
     );
   }
