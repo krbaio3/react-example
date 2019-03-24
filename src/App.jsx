@@ -1,10 +1,13 @@
 import React from 'react';
-import Person from './Person/Person';
 import uuid from 'uuid/v4';
 
 // Styles
 import '../node_modules/animate.css/animate.min.css';
 import Styles from './App.module.scss';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
+
+// Components
+import Person from './Person/Person';
 import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 class App extends React.Component {
@@ -48,19 +51,18 @@ class App extends React.Component {
 
     if (this.state.showPersons) {
       persons = (
-        <ErrorBoundary>
-          <div className="animated flip">
-            {this.state.persons.map((person, index) => (
+        <div className="animated flip">
+          {this.state.persons.map((person, index) => (
+            <ErrorBoundary key={person.id}>
               <Person
                 name={person.name}
                 age={person.age}
                 click={() => this.deletePersonHandler(index)}
-                key={person.id}
                 changed={event => this.nameChangedHandler(event, person.id)}
               />
-            ))}
-          </div>
-        </ErrorBoundary>
+            </ErrorBoundary>
+          ))}
+        </div>
       );
       btnClass = Styles.Red;
     }
