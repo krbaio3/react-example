@@ -1,5 +1,5 @@
 import React from 'react';
-import './Person.css';
+import Styles from './Person.module.css';
 
 const person = props => {
   const rnd = Math.random();

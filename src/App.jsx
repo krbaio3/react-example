@@ -5,6 +5,7 @@ import uuid from 'uuid/v4';
 // Styles
 import '../node_modules/animate.css/animate.min.css';
 import Styles from './App.module.scss';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 class App extends React.Component {
   state = {
@@ -47,21 +48,22 @@ class App extends React.Component {
 
     if (this.state.showPersons) {
       persons = (
-        <div className="animated flip">
-          {this.state.persons.map((person, index) => (
-            <Person
-              name={person.name}
-              age={person.age}
-              click={() => this.deletePersonHandler(index)}
-              key={person.id}
-              changed={event => this.nameChangedHandler(event, person.id)}
-            />
-          ))}
-        </div>
+        <ErrorBoundary>
+          <div className="animated flip">
+            {this.state.persons.map((person, index) => (
+              <Person
+                name={person.name}
+                age={person.age}
+                click={() => this.deletePersonHandler(index)}
+                key={person.id}
+                changed={event => this.nameChangedHandler(event, person.id)}
+              />
+            ))}
+          </div>
+        </ErrorBoundary>
       );
       btnClass = Styles.Red;
     }
-
     let classes = [];
 
     if (this.state.persons.length <= 2) {
